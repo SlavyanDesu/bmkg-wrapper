@@ -32,7 +32,7 @@ const bmkg = new BMKG();
 
 // Menampilkan data gempa yang terakhir terjadi dalam berupa objek
 async function autoGempa() {
-  const res = await autoGempa();
+  const res = await bmkg.autoGempa();
   console.log(res);
 }
 

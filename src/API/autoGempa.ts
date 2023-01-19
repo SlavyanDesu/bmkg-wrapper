@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseUrl, endpoints } from '../util/variables.js';
-import type { AutoGempa } from '../util/interfaces';
+import type { AutoGempa } from '../util/interfaces.js';
 
 /**
  * Mengambil data gempa yang terakhir terjadi.

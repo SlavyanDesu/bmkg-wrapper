@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { baseUrl, endpoints } from '../util/variables.js';
-import type { GempaDirasakan } from '../util/interfaces';
+import type { GempaDirasakan } from '../util/interfaces.js';
 
 /**
  * Mengambil list data gempa yang dirasakan.

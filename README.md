@@ -1,6 +1,6 @@
 <div align="center">
 <h1><b>BMKG-wrapper</b></h1>
-<p>Sebuah API wrapper untuk memudahkan mengakses ke API BMKG.</p>
+<p>Sebuah API wrapper untuk memudahkan akses ke API BMKG.</p>
 </div>
 
 ## Instalasi

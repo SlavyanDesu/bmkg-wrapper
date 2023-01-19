@@ -40,11 +40,11 @@ autoGempa();
 Mengambil data gempa yang terakhir terjadi.  
 Hasil berupa `AutoGempa`
 
-**bmkg.gempaDirasakan()**
+**bmkg.gempaDirasakan()**  
 Mengambil list data gempa yang dirasakan.  
 Hasil berupa `GempaDirasakan[]`
 
-**bmkg.gempaTerkini()**
+**bmkg.gempaTerkini()**  
 Mengambil list data gempa terkini.  
 Hasil berupa `GempaTerkini[]`
 

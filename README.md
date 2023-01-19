@@ -34,6 +34,60 @@ async function autoGempa() {
 
 autoGempa();
 ```
+## Results
+- **AutoGempa**
+```js
+{
+  tanggal: string,
+  jam: string,
+  dateTime: string,
+  coordinates: string,
+  lintang: string,
+  bujur: string,
+  magnitude: number,
+  kedalaman: string,
+  wilayah: string,
+  potensi: string,
+  dirasakan: string,
+  shakemap: string
+}
+```
+- **GempaTerkini**
+```js
+[
+  {
+    tanggal: string,
+    jam: string,
+    dateTime: string,
+    coordinates: string,
+    lintang: string,
+    bujur: string,
+    magnitude: number,
+    kedalaman: string,
+    wilayah: string,
+    potensi: string
+  },
+  ...
+]
+```
+- **GempaDirasakan**
+```js
+[
+  {
+    tanggal: string,
+    jam: string,
+    dateTime: string,
+    coordinates: string,
+    lintang: string,
+    bujur: string,
+    magnitude: number,
+    kedalaman: string,
+    wilayah: string,
+    dirasakan: string
+  },
+  ...
+]
+```
 
 ## API
 **bmkg.autoGempa()**  

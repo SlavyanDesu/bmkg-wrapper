@@ -1,6 +1,11 @@
 <div align="center">
 <h1><b>BMKG-wrapper</b></h1>
 <p>Sebuah API wrapper untuk memudahkan akses ke API BMKG.</p>
+<a href="https://opensource.org/licenses/mit-license.php"><img src="https://badges.frapsoft.com/os/mit/mit.svg?v=103"></a>
+<a href="https://www.npmjs.com/package/bmkg-wrapper"><img src="https://www.npmjs.com/package/bmkg-wrapper"></a>
+<a href="https://packagephobia.com/result?p=bmkg-wrapper"><img src="https://packagephobia.com/badge?p=bmkg-wrapper"></a>
+<br>
+<a href="https://www.codefactor.io/repository/github/slavyandesu/bmkg-wrapper"><img src="https://www.codefactor.io/repository/github/slavyandesu/bmkg-wrapper/badge" alt="CodeFactor" /></a>
 </div>
 
 ## Instalasi

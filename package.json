@@ -1,7 +1,7 @@
 {
-  "name": "bmkg-wrap",
+  "name": "bmkg-wrapper",
   "version": "0.0.1",
-  "description": "API wrapper untuk parse data dari BMKG.",
+  "description": "Sebuah API wrapper untuk memudahkan mengakses ke API BMKG",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",

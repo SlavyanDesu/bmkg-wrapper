@@ -36,9 +36,9 @@ export async function gempaDirasakan(): Promise<GempaDirasakan[]> {
         wilayah: Wilayah,
         dirasakan: Dirasakan
       });
-    };
+    }
     return array;
   } catch (err) {
     return console.error(err)!;
-  };
-};
+  }
+}

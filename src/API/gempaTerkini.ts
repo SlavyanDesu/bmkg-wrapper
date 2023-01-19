@@ -36,9 +36,9 @@ export async function gempaTerkini(): Promise<GempaTerkini[]> {
         wilayah: Wilayah,
         potensi: Potensi
       });
-    };
+    }
     return array;
   } catch (err) {
     return console.error(err)!;
-  };
-};
+  }
+}

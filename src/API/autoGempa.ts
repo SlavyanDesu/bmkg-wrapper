@@ -40,5 +40,5 @@ export async function autoGempa(): Promise<AutoGempa> {
     return obj;
   } catch (err) {
     return console.error(err)!;
-  };
-};
+  }
+}

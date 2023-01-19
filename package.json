@@ -1,0 +1,40 @@
+{
+  "name": "bmkg-wrap",
+  "version": "0.0.1",
+  "description": "API wrapper untuk parse data dari BMKG.",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "clean": "rimraf dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "bmkg",
+    "api",
+    "wrapper",
+    "json",
+    "simple"
+  ],
+  "author": "SlavyanDesu",
+  "license": "MIT",
+  "devDependencies": {
+    "rimraf": "^4.1.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "axios": "^1.2.3"
+  }
+}

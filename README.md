@@ -38,7 +38,7 @@ async function autoGempa() {
 
 autoGempa();
 ```
-## Results
+## Hasil
 - **AutoGempa**
 ```js
 {
@@ -107,6 +107,8 @@ Mengambil list data gempa terkini.
 Hasil berupa `GempaTerkini[]`
 
 ## Lisensi
-[MIT](LICENSE)  
-[Data Terbuka BMKG](https://data.bmkg.go.id/)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper?ref=badge_large)
+- [MIT](LICENSE)
+- [Data Terbuka BMKG](https://data.bmkg.go.id/)
+<div align="center">
+  <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper?ref=badge_large"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper.svg?type=large" alt="Fossa Status">
+</div>

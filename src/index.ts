@@ -1,5 +1,5 @@
-import { autoGempa, gempaDirasakan, gempaTerkini } from './API/index.js'
-import type { AutoGempa, GempaDirasakan, GempaTerkini } from './util/interfaces.js'
+import { autoGempa, gempaDirasakan, gempaTerkini } from './API/gempa/index.js';
+import type { AutoGempa, GempaDirasakan, GempaTerkini } from './util/interfaces.js';
 
 export default class BMKG {
   /**
@@ -8,7 +8,7 @@ export default class BMKG {
    * @returns {Promise<AutoGempa>} Object data gempa yang terakhir terjadi.
    */
   autoGempa(): Promise<AutoGempa> {
-    return autoGempa()
+    return autoGempa();
   }
 
   /**
@@ -17,7 +17,7 @@ export default class BMKG {
    * @returns {Promise<GempaDirasakan[]>} Array object list gempa yang dirasakan.
    */
   gempaDirasakan(): Promise<GempaDirasakan[]> {
-    return gempaDirasakan()
+    return gempaDirasakan();
   }
 
   /**
@@ -26,6 +26,6 @@ export default class BMKG {
    * @returns {Promise<GempaTerkini[]>} Array object list gempa terkini.
    */
   gempaTerkini(): Promise<GempaTerkini[]> {
-    return gempaTerkini()
+    return gempaTerkini();
   }
 }

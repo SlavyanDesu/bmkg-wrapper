@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { baseUrl, endpoints } from '../util/variables.js';
-import type { GempaTerkini } from '../util/interfaces.js';
+import { baseUrl, endpoints } from '../../util/variables.js';
+import type { GempaTerkini } from '../../util/interfaces.js';
 
 /**
  * Mengambil list data gempa terkini.
@@ -9,7 +9,7 @@ import type { GempaTerkini } from '../util/interfaces.js';
  */
 export async function gempaTerkini(): Promise<GempaTerkini[]> {
   try {
-    const res = await axios.get(baseUrl + endpoints.gempaTerkini);
+    const res = await axios.get(baseUrl.gempa + endpoints.gempa.gempaTerkini);
     const array: GempaTerkini[] = [];
     for (let i = 0; i < res.data.Infogempa.gempa.length; i++) {
       const {
@@ -39,6 +39,6 @@ export async function gempaTerkini(): Promise<GempaTerkini[]> {
     }
     return array;
   } catch (err) {
-    return console.error(err)!;
+    throw err;
   }
 }

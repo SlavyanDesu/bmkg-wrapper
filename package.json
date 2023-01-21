@@ -26,7 +26,8 @@
     "clean": "rimraf dist",
     "format": "prettier --ignore-path .gitignore --config .prettierrc --write \"**/*.ts\"",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepublish": "npm run clean && npm run build:esm && npm run build:cjs && tsconfig-to-dual-package"
   },
   "files": [
     "dist"

@@ -1,7 +1,19 @@
-name: Publish NPM
+name: Publish Package
 on: [workflow_dispatch]
 jobs:
-  publish:
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  github:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -10,12 +22,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-      - run: npm install
-      - run: npm run build
-      - run: |
-          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' >> build/.npmrc
+          node-version: '16.x'
+          registry-url: 'https://npm.pkg.github.com'
+      - run: npm ci
       - run: npm publish
-        working-directory: ./build
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

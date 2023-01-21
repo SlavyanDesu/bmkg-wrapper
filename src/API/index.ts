@@ -1,3 +1,4 @@
-export * from './autoGempa.js';
-export * from './gempaTerkini.js';
-export * from './gempaDirasakan.js';
+export * from './gempa/autoGempa.js';
+export * from './gempa/gempaTerkini.js';
+export * from './gempa/gempaDirasakan.js';
+export * from './cuaca/prakiraanCuaca.js';

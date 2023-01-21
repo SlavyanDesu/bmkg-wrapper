@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { baseUrl, endpoints } from '../util/variables.js';
-import type { AutoGempa } from '../util/interfaces.js';
+import { baseUrl, endpoints } from '../../util/variables.js';
+import type { AutoGempa } from '../../util/interfaces.js';
 
 /**
  * Mengambil data gempa yang terakhir terjadi.
@@ -9,13 +9,14 @@ import type { AutoGempa } from '../util/interfaces.js';
  */
 export async function autoGempa(): Promise<AutoGempa> {
   try {
-    const res = await axios.get(baseUrl + endpoints.autoGempa);
+    const res = await axios.get(baseUrl.gempa + endpoints.gempa.autoGempa);
     const {
       Tanggal,
       Jam,
       DateTime,
       Coordinates,
-      Lintang, Bujur,
+      Lintang,
+      Bujur,
       Magnitude,
       Kedalaman,
       Wilayah,
@@ -35,10 +36,10 @@ export async function autoGempa(): Promise<AutoGempa> {
       wilayah: Wilayah,
       potensi: Potensi,
       dirasakan: Dirasakan,
-      shakemap: baseUrl + '/' + Shakemap,
+      shakemap: baseUrl.gempa + '/' + Shakemap
     };
     return obj;
   } catch (err) {
-    return console.error(err)!;
+    throw err;
   }
 }

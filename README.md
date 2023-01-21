@@ -1,6 +1,6 @@
 <div align="center">
-  <h1><b>BMKG-wrapper</b></h1>
-  <p>Sebuah API wrapper untuk memudahkan akses ke API BMKG.</p>
+  <h1><b>bmkg-wrapper</b></h1>
+  <p>Sebuah API wrapper untuk mempermudah akses API data terbuka Badan Meteorologi, Klimatologi, dan Geofisika.</p>
   <a href="https://opensource.org/licenses/mit-license.php"><img src="https://badges.frapsoft.com/os/mit/mit.svg?v=103"></a>
   <a href="https://packagephobia.com/result?p=bmkg-wrapper"><img src="https://packagephobia.com/badge?p=bmkg-wrapper"></a>
   <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper.svg?type=shield"/></a>
@@ -37,8 +37,21 @@ async function autoGempa() {
 }
 
 autoGempa();
+
+// Menampilkan data prakiraan cuaca untuk daerah Bali
+async function prakiraanCuaca(daerah) {
+  const res = await bmkg.prakiraanCuaca(daerah);
+  console.log(res);
+}
+
+prakiraanCuaca('bali');
 ```
-## Results
+
+## Daerah Tersedia
+Untuk melihat daerah yang tersedia di database data terbuka BMKG, silakan untuk mengunjungi pranala berikut.
+- [Data Terbuka BMKG](https://data.bmkg.go.id/)
+
+## Hasil
 - **AutoGempa**
 ```js
 {
@@ -92,6 +105,36 @@ autoGempa();
   ...
 ]
 ```
+- **Cuaca**
+```js
+{
+  timestamp: {
+    tahun: string,
+    bulan: string,
+    tanggal: string,
+    jam: string,
+    menit: string,
+    detik: string,
+  },
+  daerah: [
+    {
+      kota: string,
+      prakiraan_cuaca: [
+        {
+          waktu: string,
+          cuaca: string,
+          temperatur: {
+            celsius: number,
+            fahrenheit: number
+          }
+        }
+        ...
+      ]
+    }
+    ...
+  ]
+}
+```
 
 ## API
 **bmkg.autoGempa()**  
@@ -106,7 +149,17 @@ Hasil berupa `GempaDirasakan[]`
 Mengambil list data gempa terkini.  
 Hasil berupa `GempaTerkini[]`
 
+**bmkg.prakiraanCuaca(daerah)**
+- `daerah` String provinsi dan kota-kota yang ada di Indonesia. Default `indonesia`.
+
+Mengambil data prakiraan cuaca dalam waktu 3 harian.  
+Hasil berupa `Cuaca`
+
+## Sumber Daya
+- [Data Terbuka BMKG](https://data.bmkg.go.id/)
+
 ## Lisensi
-[MIT](LICENSE)  
-[Data Terbuka BMKG](https://data.bmkg.go.id/)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper?ref=badge_large)
+**bmkg-wrapper** © [SlavyanDesu](https://github.com/SlavyanDesu), dirilis di bawah [Lisensi MIT](LICENSE). Ditulis dan dikelola oleh SlavyanDesu.
+<div align="center">
+  <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper?ref=badge_large"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FSlavyanDesu%2Fbmkg-wrapper.svg?type=large" alt="Fossa Status">
+</div>

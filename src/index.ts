@@ -1,5 +1,5 @@
-import { autoGempa, gempaDirasakan, gempaTerkini } from './API/index.js'
-import type { AutoGempa, GempaDirasakan, GempaTerkini } from './util/interfaces.js'
+import { autoGempa, gempaDirasakan, gempaTerkini, prakiraanCuaca } from './API/index.js';
+import type { AutoGempa, GempaDirasakan, GempaTerkini, Cuaca } from './util/interfaces.js';
 
 export default class BMKG {
   /**
@@ -7,8 +7,8 @@ export default class BMKG {
    *
    * @returns {Promise<AutoGempa>} Object data gempa yang terakhir terjadi.
    */
-  autoGempa(): Promise<AutoGempa> {
-    return autoGempa()
+  async autoGempa(): Promise<AutoGempa> {
+    return await autoGempa();
   }
 
   /**
@@ -16,8 +16,8 @@ export default class BMKG {
    *
    * @returns {Promise<GempaDirasakan[]>} Array object list gempa yang dirasakan.
    */
-  gempaDirasakan(): Promise<GempaDirasakan[]> {
-    return gempaDirasakan()
+  async gempaDirasakan(): Promise<GempaDirasakan[]> {
+    return await gempaDirasakan();
   }
 
   /**
@@ -25,7 +25,17 @@ export default class BMKG {
    *
    * @returns {Promise<GempaTerkini[]>} Array object list gempa terkini.
    */
-  gempaTerkini(): Promise<GempaTerkini[]> {
-    return gempaTerkini()
+  async gempaTerkini(): Promise<GempaTerkini[]> {
+    return await gempaTerkini();
+  }
+
+  /**
+   * Mengambil data prakiraan cuaca dalam waktu 3 harian.
+   *
+   * @param {string} [daerah = 'indonesia'] - Provinsi dan kota-kota yang ada di Indonesia. Default `indonesia`.
+   * @returns {Promise<Cuaca>} Object prakiraan cuaca untuk `daerah`.
+   */
+  async prakiraanCuaca(daerah?: string): Promise<Cuaca> {
+    return await prakiraanCuaca(daerah);
   }
 }

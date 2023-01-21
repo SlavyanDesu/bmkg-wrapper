@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { baseUrl, endpoints } from '../util/variables.js';
-import type { GempaDirasakan } from '../util/interfaces.js';
+import { baseUrl, endpoints } from '../../util/variables.js';
+import type { GempaDirasakan } from '../../util/interfaces.js';
 
 /**
  * Mengambil list data gempa yang dirasakan.
@@ -9,7 +9,7 @@ import type { GempaDirasakan } from '../util/interfaces.js';
  */
 export async function gempaDirasakan(): Promise<GempaDirasakan[]> {
   try {
-    const res = await axios.get(baseUrl + endpoints.gempaDirasakan);
+    const res = await axios.get(baseUrl.gempa + endpoints.gempa.gempaDirasakan);
     const array: GempaDirasakan[] = [];
     for (let i = 0; i < res.data.Infogempa.gempa.length; i++) {
       const {
@@ -39,6 +39,6 @@ export async function gempaDirasakan(): Promise<GempaDirasakan[]> {
     }
     return array;
   } catch (err) {
-    return console.error(err)!;
+    throw err;
   }
 }

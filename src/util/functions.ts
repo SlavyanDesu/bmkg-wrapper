@@ -1,5 +1,5 @@
 /* eslint-disable no-prototype-builtins */
-import moment from 'moment';
+import dayjs from 'dayjs';
 import type { Cuaca, CuacaDaerah, PrakiraanCuaca } from './interfaces.js';
 
 /**
@@ -11,7 +11,7 @@ import type { Cuaca, CuacaDaerah, PrakiraanCuaca } from './interfaces.js';
  */
 export function timeFormatter(date: string, format = 'YYYY/MM/DD HH:mm'): string {
   const stringTime = new Date(date.replace(/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)$/, '$4:$5:$6 $2/$3/$1'));
-  return moment(stringTime).format(format);
+  return dayjs(stringTime).format(format);
 }
 
 /**

@@ -1,6 +1,6 @@
 {
   "name": "bmkg-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sebuah API wrapper untuk mempermudah akses API data terbuka Badan Meteorologi, Klimatologi, dan Geofisika.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -26,8 +26,7 @@
     "clean": "rimraf dist",
     "format": "prettier --ignore-path .gitignore --config .prettierrc --write \"**/*.ts\"",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prepublish": "npm run clean && npm run build:esm && npm run build:cjs && tsconfig-to-dual-package"
+    "lint:fix": "eslint . --fix"
   },
   "files": [
     "dist"
@@ -39,6 +38,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/SlavyanDesu/bmkg-wrapper.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "keywords": [
     "bmkg",
@@ -64,7 +66,7 @@
   },
   "dependencies": {
     "axios": "^1.2.3",
-    "fast-xml-parser": "^4.0.13",
-    "moment": "^2.29.4"
+    "dayjs": "^1.11.7",
+    "fast-xml-parser": "^4.0.13"
   }
 }

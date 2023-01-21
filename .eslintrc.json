@@ -13,5 +13,8 @@
   "rules": {
     "no-useless-catch": "off"
   },
+  "env": {
+    "node": true
+  },
   "ignorePatterns": ["dist"]
 }

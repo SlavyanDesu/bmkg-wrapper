@@ -3,6 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "NodeNext",
+    "removeComments": true,
     "strict": true,
     "esModuleInterop": true,
     "declaration": true,

@@ -36,8 +36,8 @@ export async function autoGempa(): Promise<AutoGempa> {
       wilayah: Wilayah,
       potensi: Potensi,
       dirasakan: Dirasakan,
-      shakemap: baseUrl.gempa + '/' + Shakemap,
-    }
+      shakemap: baseUrl.gempa + '/' + Shakemap
+    };
     return obj;
   } catch (err) {
     throw err;

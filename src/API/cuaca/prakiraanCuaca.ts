@@ -1,47 +1,30 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
-import { timeFormatter, weatherCodeToString } from '../../util/functions.js';
+import { getWeatherData } from '../../util/functions.js';
+import type { Cuaca } from '../../util/interfaces.js';
 import { baseUrl, endpoints } from '../../util/variables.js';
 const parser = new XMLParser({ ignoreAttributes: false });
 
-export async function prakiraanCuaca(daerah = 'indonesia') {
+/**
+ * Mengambil data prakiraan cuaca dalam waktu 3 harian.
+ *
+ * @param {string} daerah - Provinsi dan kota-kota yang ada di Indonesia. Default `indonesia`.
+ * @returns {Promise<Cuaca>} Object prakiraan cuaca untuk `daerah`.
+ */
+export async function prakiraanCuaca(daerah = 'indonesia'): Promise<Cuaca> {
   try {
+    let found = false;
     Object.keys(endpoints.cuaca).forEach((key) => {
-      if (key == daerah) {
+      if (key == daerah.toLowerCase()) {
         daerah = key;
+        found = true;
       }
     });
-    if (typeof daerah == 'string') {
+    if (found) {
       const res = await axios.get(baseUrl.cuaca + endpoints.cuaca[daerah as keyof typeof endpoints.cuaca]);
-      const parsed = parser.parse(res.data);
-      const { issue, ...rest } = parsed.data.forecast;
-      const arrayDaerah: object[] = [];
-      const arrayCuaca: object[] = [];
-      for (var i = 0; i < rest.area.length; i++) {
-        for (var j = 0; j < rest.area[i].parameter[6].timerange.length; j++) {
-          arrayCuaca.push({
-            waktu: timeFormatter(rest.area[i].parameter[6].timerange[j]['@_datetime']),
-            cuaca: weatherCodeToString(rest.area[i].parameter[6].timerange[j].value['#text'])
-          });
-        }
-        arrayDaerah.push({
-          kota: rest.area[i].name[0]['#text'],
-          kabupaten: rest.area[i].name[1]['#text'],
-          prakiraan_cuaca: arrayCuaca
-        });
-      }
-      const obj = {
-        timestamp: {
-          tahun: issue.year,
-          bulan: issue.month,
-          tanggal: issue.day,
-          jam: issue.hour,
-          menit: issue.minute,
-          second: issue.second
-        },
-        daerah: arrayDaerah
-      }
-      return obj;
+      return getWeatherData(parser.parse(res.data));
+    } else {
+      throw new Error('Data cuaca tidak ditemukan!');
     }
   } catch (err) {
     throw err;

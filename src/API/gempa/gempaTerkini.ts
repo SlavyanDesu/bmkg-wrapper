@@ -12,18 +12,7 @@ export async function gempaTerkini(): Promise<GempaTerkini[]> {
     const res = await axios.get(baseUrl.gempa + endpoints.gempa.gempaTerkini);
     const array: GempaTerkini[] = [];
     for (let i = 0; i < res.data.Infogempa.gempa.length; i++) {
-      const {
-        Tanggal,
-        Jam,
-        DateTime,
-        Coordinates,
-        Lintang,
-        Bujur,
-        Magnitude,
-        Kedalaman,
-        Wilayah,
-        Potensi
-      } = res.data.Infogempa.gempa[i];
+      const { Tanggal, Jam, DateTime, Coordinates, Lintang, Bujur, Magnitude, Kedalaman, Wilayah, Potensi } = res.data.Infogempa.gempa[i];
       array.push({
         tanggal: Tanggal,
         jam: Jam,

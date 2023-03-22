@@ -242,4 +242,47 @@ export interface PrakiraanCuaca {
      */
     fahrenheit: number;
   };
+
+  /**
+   * Prakiraan kecepatan dan arah angin.
+   */
+  angin: {
+    kecepatan_angin: {
+      /**
+       * Kecepatan angin dalam satuan knot.
+       */
+      knot: number;
+
+      /**
+       * Kecepatan angin dalam satuan mph.
+       */
+      mph: number;
+
+      /**
+       * Kecepatan angin dalam satuan kph.
+       */
+      kph: number;
+
+      /**
+       * Kecepatan angin dalam satuan ms.
+       */
+      ms: number;
+    };
+    arah_angin: {
+      /**
+       * Arah angin dalam satuan derajat.
+       */
+      derajat: number;
+
+      /**
+       * Arah angin dalam CARD.
+       */
+      card: string;
+
+      /**
+       * Arah angin dalam SEXA.
+       */
+      sexa: number;
+    };
+  };
 }

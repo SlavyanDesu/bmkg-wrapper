@@ -67,22 +67,29 @@ export function getWeatherData(parsedXML: any): Cuaca {
       weatherArray.push({
         waktu: timeFormatter(rest.area[i].parameter[6].timerange[j]['@_datetime']),
         cuaca: weatherCodeToString(rest.area[i].parameter[6].timerange[j].value['#text']),
-        temperatur: {
-          celsius: rest.area[i].parameter[5].timerange[j].value[0]['#text'],
-          fahrenheit: rest.area[i].parameter[5].timerange[j].value[1]['#text']
+        suhu: {
+          celsius: {
+            data: rest.area[i].parameter[5].timerange[j].value[0]['#text']
+          },
+          fahrenheit: {
+            data: rest.area[i].parameter[5].timerange[j].value[1]['#text']
+          }
         },
         angin: {
-          arah_angin: {
-            derajat: rest.area[i].parameter[7].timerange[j].value[0]['#text'],
-            card: rest.area[i].parameter[7].timerange[j].value[1]['#text'],
-            sexa: rest.area[i].parameter[7].timerange[j].value[2]['#text']
-          },
           kecepatan_angin: {
             knot: rest.area[i].parameter[8].timerange[j].value[0]['#text'],
             mph: rest.area[i].parameter[8].timerange[j].value[1]['#text'],
             kph: rest.area[i].parameter[8].timerange[j].value[2]['#text'],
             ms: rest.area[i].parameter[8].timerange[j].value[3]['#text']
+          },
+          arah_angin: {
+            derajat: rest.area[i].parameter[7].timerange[j].value[0]['#text'],
+            card: rest.area[i].parameter[7].timerange[j].value[1]['#text'],
+            sexa: rest.area[i].parameter[7].timerange[j].value[2]['#text']
           }
+        },
+        kelembapan: {
+          data: rest.area[i].parameter[0].timerange[j].value['#text']
         }
       });
     }

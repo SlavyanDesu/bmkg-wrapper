@@ -20,12 +20,12 @@ export interface AutoGempa {
   coordinates: string;
 
   /**
-   * Garis lintang wilayah tempat gempa terjadi.
+   * Garis lintang wilayah tempat terjadinya gempa.
    */
   lintang: string;
 
   /**
-   * Garis bujur wilayah tempat gempa terjadi.
+   * Garis bujur wilayah tempat terjadinya gempa.
    */
   bujur: string;
 
@@ -82,12 +82,12 @@ export interface GempaTerkini {
   coordinates: string;
 
   /**
-   * Garis lintang wilayah tempat gempa terjadi.
+   * Garis lintang wilayah tempat terjadinya gempa.
    */
   lintang: string;
 
   /**
-   * Garis bujur wilayah tempat gempa terjadi.
+   * Garis bujur wilayah tempat terjadinya gempa.
    */
   bujur: string;
 
@@ -134,12 +134,12 @@ export interface GempaDirasakan {
   coordinates: string;
 
   /**
-   * Garis lintang wilayah tempat gempa terjadi.
+   * Garis lintang wilayah tempat terjadinya gempa.
    */
   lintang: string;
 
   /**
-   * Garis bujur wilayah tempat gempa terjadi.
+   * Garis bujur wilayah tempat terjadinya gempa.
    */
   bujur: string;
 
@@ -172,32 +172,32 @@ export interface Cuaca {
     /**
      * Tahun diunggah.
      */
-    tahun: string;
+    tahun: number;
 
     /**
      * Bulan diunggah.
      */
-    bulan: string;
+    bulan: number;
 
     /**
      * Tanggal diunggah.
      */
-    tanggal: string;
+    tanggal: number;
 
     /**
      * Jam diunggah.
      */
-    jam: string;
+    jam: number;
 
     /**
      * Menit diunggah.
      */
-    menit: string;
+    menit: number;
 
     /**
      * Detik diunggah.
      */
-    detik: string;
+    detik: number;
   };
   /**
    * Array object data cuaca per-daerah.
@@ -229,18 +229,28 @@ export interface PrakiraanCuaca {
   cuaca: string;
 
   /**
-   * Prakiraan temperatur.
+   * Prakiraan suhu udara.
    */
-  temperatur: {
+  suhu: {
     /**
-     * Temperatur dalam satuan celsius.
+     * Suhu udara dalam satuan celsius.
      */
-    celsius: number;
+    celsius: {
+      /**
+       * Suhu udara.
+       */
+      data: number;
+    };
 
     /**
-     * Temperatur dalam satuan fahrenheit.
+     * Suhu udara dalam satuan fahrenheit.
      */
-    fahrenheit: number;
+    fahrenheit: {
+      /**
+       * Suhu udara.
+       */
+      data: number;
+    };
   };
 
   /**
@@ -268,6 +278,7 @@ export interface PrakiraanCuaca {
        */
       ms: number;
     };
+
     arah_angin: {
       /**
        * Arah angin dalam satuan derajat.
@@ -284,5 +295,15 @@ export interface PrakiraanCuaca {
        */
       sexa: number;
     };
+  };
+
+  /**
+   * Prakiraan kelembapan udara dalam satuan %
+   */
+  kelembapan: {
+    /**
+     * Kelembapan udara.
+     */
+    data: number;
   };
 }

@@ -109,12 +109,12 @@ Untuk melihat daerah yang tersedia di database data terbuka BMKG, silakan untuk 
 ```js
 {
   timestamp: {
-    tahun: string,
-    bulan: string,
-    tanggal: string,
-    jam: string,
-    menit: string,
-    detik: string,
+    tahun: number,
+    bulan: number,
+    tanggal: number,
+    jam: number,
+    menit: number,
+    detik: number
   },
   daerah: [
     {
@@ -123,14 +123,34 @@ Untuk melihat daerah yang tersedia di database data terbuka BMKG, silakan untuk 
         {
           waktu: string,
           cuaca: string,
-          temperatur: {
-            celsius: number,
-            fahrenheit: number
+          suhu: {
+            celsius: {
+              data: number
+            },
+            fahrenheit: {
+              data: number
+            }
+          },
+          angin: {
+            kecepatan_angin: {
+              knot: number,
+              mph: number,
+              kph: number,
+              ms: number
+            },
+            arah_angin: {
+              derajat: number,
+              card: string,
+              sexa: number
+            }
+          },
+          kelembapan: {
+            data: number
           }
-        }
+        },
         ...
       ]
-    }
+    },
     ...
   ]
 }

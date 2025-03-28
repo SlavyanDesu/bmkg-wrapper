@@ -8,8 +8,8 @@
 </div>
 
 ## Instalasi
-```sh
-$ npm install bmkg-wrapper
+```bash
+npm install bmkg-wrapper
 ```
 
 ## Penggunaan

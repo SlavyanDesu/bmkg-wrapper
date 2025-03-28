@@ -1,34 +1,44 @@
 import axios from 'axios';
-import { baseUrl, endpoints } from '../../util/variables.js';
-import type { GempaDirasakan } from '../../util/interfaces.js';
+import type { GempaDirasakan, GempaDirasakanAPI } from '../../utils/interfaces.js';
+import { baseUrl, endpoints } from '../../utils/variables.js';
 
 /**
  * Mengambil list data gempa yang dirasakan.
  *
- * @returns {Promise<GempaDirasakan[]>} Array object list gempa yang dirasakan.
+ * @returns Array berisi data gempa yang dirasakan.
  */
 export async function gempaDirasakan(): Promise<GempaDirasakan[]> {
-  try {
-    const res = await axios.get(baseUrl.gempa + endpoints.gempa.gempaDirasakan);
-    const array: GempaDirasakan[] = [];
-    for (let i = 0; i < res.data.Infogempa.gempa.length; i++) {
-      const { Tanggal, Jam, DateTime, Coordinates, Lintang, Bujur, Magnitude, Kedalaman, Wilayah, Dirasakan } =
-        res.data.Infogempa.gempa[i];
-      array.push({
-        tanggal: Tanggal,
-        jam: Jam,
-        dateTime: DateTime,
-        coordinates: Coordinates,
-        lintang: Lintang,
-        bujur: Bujur,
-        magnitude: Number(Magnitude),
-        kedalaman: Kedalaman,
-        wilayah: Wilayah,
-        dirasakan: Dirasakan
-      });
-    }
-    return array;
-  } catch (err) {
-    throw err;
-  }
+	try {
+		const res = await axios.get<GempaDirasakanAPI>(baseUrl.gempa + endpoints.gempa.gempaDirasakan);
+		const gempa = res.data.Infogempa?.gempa ?? [];
+
+		return gempa.map(
+			({
+				Tanggal,
+				Jam,
+				DateTime,
+				Coordinates,
+				Lintang,
+				Bujur,
+				Magnitude,
+				Kedalaman,
+				Wilayah,
+				Dirasakan,
+			}) => ({
+				tanggal: Tanggal,
+				jam: Jam,
+				dateTime: DateTime,
+				coordinates: Coordinates,
+				lintang: Lintang,
+				bujur: Bujur,
+				magnitude: Number(Magnitude),
+				kedalaman: Kedalaman,
+				wilayah: Wilayah,
+				dirasakan: Dirasakan,
+			})
+		);
+	} catch (err) {
+		console.error('Error fetching data gempa:', err);
+		return [];
+	}
 }

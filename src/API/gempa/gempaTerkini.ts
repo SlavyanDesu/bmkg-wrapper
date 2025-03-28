@@ -1,34 +1,44 @@
 import axios from 'axios';
-import { baseUrl, endpoints } from '../../util/variables.js';
-import type { GempaTerkini } from '../../util/interfaces.js';
+import type { GempaTerkini, GempaTerkiniAPI } from '../../utils/interfaces.js';
+import { baseUrl, endpoints } from '../../utils/variables.js';
 
 /**
  * Mengambil list data gempa terkini.
  *
- * @returns {Promise<GempaTerkini[]>} Array object list gempa terkini.
+ * @returns Array berisi data gempa terkini.
  */
 export async function gempaTerkini(): Promise<GempaTerkini[]> {
-  try {
-    const res = await axios.get(baseUrl.gempa + endpoints.gempa.gempaTerkini);
-    const array: GempaTerkini[] = [];
-    for (let i = 0; i < res.data.Infogempa.gempa.length; i++) {
-      const { Tanggal, Jam, DateTime, Coordinates, Lintang, Bujur, Magnitude, Kedalaman, Wilayah, Potensi } =
-        res.data.Infogempa.gempa[i];
-      array.push({
-        tanggal: Tanggal,
-        jam: Jam,
-        dateTime: DateTime,
-        coordinates: Coordinates,
-        lintang: Lintang,
-        bujur: Bujur,
-        magnitude: Number(Magnitude),
-        kedalaman: Kedalaman,
-        wilayah: Wilayah,
-        potensi: Potensi
-      });
-    }
-    return array;
-  } catch (err) {
-    throw err;
-  }
+	try {
+		const res = await axios.get<GempaTerkiniAPI>(baseUrl.gempa + endpoints.gempa.gempaTerkini);
+		const gempa = res.data.Infogempa?.gempa ?? [];
+
+		return gempa.map(
+			({
+				Tanggal,
+				Jam,
+				DateTime,
+				Coordinates,
+				Lintang,
+				Bujur,
+				Magnitude,
+				Kedalaman,
+				Wilayah,
+				Potensi,
+			}) => ({
+				tanggal: Tanggal,
+				jam: Jam,
+				dateTime: DateTime,
+				coordinates: Coordinates,
+				lintang: Lintang,
+				bujur: Bujur,
+				magnitude: Number(Magnitude),
+				kedalaman: Kedalaman,
+				wilayah: Wilayah,
+				potensi: Potensi,
+			})
+		);
+	} catch (err) {
+		console.error('Error fetching data gempa:', err);
+		return [];
+	}
 }

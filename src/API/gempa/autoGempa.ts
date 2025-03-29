@@ -26,7 +26,7 @@ export async function autoGempa(): Promise<AutoGempa | null> {
 			wilayah: gempa.Wilayah,
 			potensi: gempa.Potensi,
 			dirasakan: gempa.Dirasakan,
-			shakemap: `${baseUrl.gempa}/${gempa.Shakemap}`,
+			shakemap: baseUrl.gempa + '/' + gempa.Shakemap,
 		};
 	} catch (err) {
 		console.error('Error fetching data gempa:', err);

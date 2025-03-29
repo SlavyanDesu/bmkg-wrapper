@@ -10,7 +10,7 @@ export interface AutoGempa {
 	jam: string;
 
 	/**
-	 * Waktu gempa terjadi dalam format constructor Date.
+	 * Waktu gempa terjadi dalam format ISO 8601.
 	 */
 	dateTime: string;
 
@@ -55,7 +55,7 @@ export interface AutoGempa {
 	dirasakan: string;
 
 	/**
-	 * Pranala gambar shakemap gempa.
+	 * Pranala shakemap gempa.
 	 */
 	shakemap: string;
 }
@@ -91,7 +91,7 @@ export interface GempaTerkini {
 	jam: string;
 
 	/**
-	 * Waktu gempa terjadi dalam format constructor Date.
+	 * Waktu gempa terjadi dalam format ISO 8601.
 	 */
 	dateTime: string;
 
@@ -160,7 +160,7 @@ export interface GempaDirasakan {
 	jam: string;
 
 	/**
-	 * Waktu gempa terjadi dalam format constructor Date.
+	 * Waktu gempa terjadi dalam format ISO 8601.
 	 */
 	dateTime: string;
 
@@ -217,148 +217,50 @@ export interface GempaDirasakanAPI {
 	};
 }
 
+export interface CuacaAPI {
+	data: DataCuaca[];
+}
+
+export interface DataCuaca {
+	lokasi: Lokasi;
+	cuaca: Cuaca[][];
+}
+
+export interface Lokasi {
+	adm1: string;
+	adm2: string;
+	adm3: string;
+	adm4: string;
+	provinsi: string;
+	kotkab: string;
+	kecamatan: string;
+	desa: string;
+	lon: number;
+	lat: number;
+	timezone: string;
+	type: string;
+}
+
 export interface Cuaca {
-	/**
-	 * Timestamp data diunggah.
-	 */
-	timestamp: {
-		/**
-		 * Tahun diunggah.
-		 */
-		tahun: number;
-
-		/**
-		 * Bulan diunggah.
-		 */
-		bulan: number;
-
-		/**
-		 * Tanggal diunggah.
-		 */
-		tanggal: number;
-
-		/**
-		 * Jam diunggah.
-		 */
-		jam: number;
-
-		/**
-		 * Menit diunggah.
-		 */
-		menit: number;
-
-		/**
-		 * Detik diunggah.
-		 */
-		detik: number;
-	};
-	/**
-	 * Array object data cuaca per-daerah.
-	 */
-	daerah: CuacaDaerah[];
-}
-
-export interface CuacaDaerah {
-	/**
-	 * Nama kota.
-	 */
-	kota: string;
-
-	/**
-	 * Array object prakiraan cuaca.
-	 */
-	prakiraan_cuaca: PrakiraanCuaca[];
-}
-
-export interface PrakiraanCuaca {
-	/**
-	 * Waktu setempat.
-	 */
-	waktu: string;
-
-	/**
-	 * Prakiraan cuaca.
-	 */
-	cuaca: string;
-
-	/**
-	 * Prakiraan suhu udara.
-	 */
-	suhu: {
-		/**
-		 * Suhu udara dalam satuan celsius.
-		 */
-		celsius: {
-			/**
-			 * Suhu udara.
-			 */
-			data: number;
-		};
-
-		/**
-		 * Suhu udara dalam satuan fahrenheit.
-		 */
-		fahrenheit: {
-			/**
-			 * Suhu udara.
-			 */
-			data: number;
-		};
-	};
-
-	/**
-	 * Prakiraan kecepatan dan arah angin.
-	 */
-	angin: {
-		kecepatan_angin: {
-			/**
-			 * Kecepatan angin dalam satuan knot.
-			 */
-			knot: number;
-
-			/**
-			 * Kecepatan angin dalam satuan mph.
-			 */
-			mph: number;
-
-			/**
-			 * Kecepatan angin dalam satuan kph.
-			 */
-			kph: number;
-
-			/**
-			 * Kecepatan angin dalam satuan ms.
-			 */
-			ms: number;
-		};
-
-		arah_angin: {
-			/**
-			 * Arah angin dalam satuan derajat.
-			 */
-			derajat: number;
-
-			/**
-			 * Arah angin dalam CARD.
-			 */
-			card: string;
-
-			/**
-			 * Arah angin dalam SEXA.
-			 */
-			sexa: number;
-		};
-	};
-
-	/**
-	 * Prakiraan kelembapan udara dalam satuan %
-	 */
-	kelembapan: {
-		/**
-		 * Kelembapan udara.
-		 */
-		data: number;
-	};
+	datetime: string;
+	t: number;
+	tcc: number;
+	tp: number;
+	weather: number;
+	weather_desc: string;
+	weather_desc_en: string;
+	wd_deg: number;
+	wd: string;
+	wd_to: string;
+	ws: number;
+	hu: number;
+	vs: number;
+	vs_text: string;
+	time_index: string;
+	analysis_date: string;
+	image: string;
+	utc_datetime: string;
+	local_datetime: string;
 }
 
 export interface KodeWilayah {

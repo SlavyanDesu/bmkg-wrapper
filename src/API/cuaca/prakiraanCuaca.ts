@@ -1,32 +1,26 @@
-import axios from 'axios';
-import { XMLParser } from 'fast-xml-parser';
-import { getWeatherData } from '../../util/functions.js';
-import type { Cuaca } from '../../util/interfaces.js';
-import { baseUrl, endpoints } from '../../util/variables.js';
-const parser = new XMLParser({ ignoreAttributes: false });
+import { BASE_URL } from '../../config/constants.js';
+import { parseCsv, parseWeatherData, searchKodeWilayah } from '../../helpers/apiHelper.js';
+import type { DataCuaca } from '../../types/index.js';
 
 /**
- * Mengambil data prakiraan cuaca dalam waktu 3 harian.
- *
- * @param {string} daerah - Provinsi dan kota-kota yang ada di Indonesia. Default `indonesia`.
- * @returns {Promise<Cuaca>} Object prakiraan cuaca untuk `daerah`.
+ * Mengambil data prakiraan cuaca dalam waktu 3 hari ke depan.
+ * @param kelurahan - Nama kelurahan/desa.
+ * @returns Object berisi data prakiraan cuaca.
  */
-export async function prakiraanCuaca(daerah = 'indonesia'): Promise<Cuaca> {
-  try {
-    let found = false;
-    Object.keys(endpoints.cuaca).forEach((key) => {
-      if (key == daerah.toLowerCase()) {
-        daerah = key;
-        found = true;
-      }
-    });
-    if (found) {
-      const res = await axios.get(baseUrl.cuaca + endpoints.cuaca[daerah as keyof typeof endpoints.cuaca]);
-      return getWeatherData(parser.parse(res.data));
-    } else {
-      throw new Error('Data cuaca tidak ditemukan!');
-    }
-  } catch (err) {
-    throw err;
-  }
-}
+export const prakiraanCuaca = async (kelurahan: string): Promise<DataCuaca | null> => {
+	try {
+		const parsedCsv = await parseCsv(BASE_URL.CSV);
+		const kodeWilayah = searchKodeWilayah(parsedCsv, kelurahan);
+
+		if (!kodeWilayah) {
+			throw new Error(`Kode wilayah untuk kelurahan "${kelurahan}" tidak ditemukan!`);
+		}
+
+		const res = await parseWeatherData(kodeWilayah);
+
+		return res;
+	} catch (err) {
+		console.error('Error fetching data cuaca:', err);
+		return null;
+	}
+};

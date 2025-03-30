@@ -37,16 +37,16 @@ const bmkg = new BMKG();
 
 // Menampilkan data gempa yang baru-baru ini terjadi
 async function autoGempa() {
-	const res = await bmkg.autoGempa();
-	console.log(res);
+  const res = await bmkg.autoGempa();
+  console.log(res);
 }
 
 autoGempa();
 
 // Menampilkan data prakiraan cuaca untuk kelurahan Lebak Bulus
 async function prakiraanCuaca(kelurahan) {
-	const res = await bmkg.prakiraanCuaca(kelurahan);
-	console.log(res);
+  const res = await bmkg.prakiraanCuaca(kelurahan);
+  console.log(res);
 }
 
 prakiraanCuaca('Lebak Bulus');

@@ -1,15 +1,14 @@
 import axios from 'axios';
-import type { GempaDirasakan, GempaDirasakanAPI } from '../../utils/interfaces.js';
-import { baseUrl, endpoints } from '../../utils/variables.js';
+import { ENDPOINTS } from '../../config/constants.js';
+import type { GempaDirasakan, GempaDirasakanAPI } from '../../types/index.js';
 
 /**
  * Mengambil list data gempa yang dirasakan.
- *
  * @returns Array berisi data gempa yang dirasakan.
  */
-export async function gempaDirasakan(): Promise<GempaDirasakan[]> {
+export const gempaDirasakan = async (): Promise<GempaDirasakan[]> => {
 	try {
-		const res = await axios.get<GempaDirasakanAPI>(baseUrl.gempa + endpoints.gempa.gempaDirasakan);
+		const res = await axios.get<GempaDirasakanAPI>(ENDPOINTS.GEMPA.GEMPA_DIRASAKAN);
 		const gempa = res.data.Infogempa?.gempa ?? [];
 
 		return gempa.map(

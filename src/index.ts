@@ -1,20 +1,18 @@
-import { autoGempa, gempaDirasakan, gempaTerkini, prakiraanCuaca } from './API/index.js';
-import type { AutoGempa, Cuaca, GempaDirasakan, GempaTerkini } from './utils/interfaces.js';
+import { autoGempa, gempaDirasakan, gempaTerkini, prakiraanCuaca } from './api/index.js';
+import type { AutoGempa, DataCuaca, GempaDirasakan, GempaTerkini } from './types/index.js';
 
 export default class BMKG {
 	/**
-	 * Mengambil data gempa yang terakhir terjadi.
-	 *
-	 * @returns {Promise<AutoGempa>} Object data gempa yang terakhir terjadi.
+	 * Mengambil data gempa yang baru-baru ini terjadi.
+	 * @returns Object berisi data gempa yang baru-baru ini terjadi.
 	 */
-	async autoGempa(): Promise<AutoGempa> {
+	async autoGempa(): Promise<AutoGempa | null> {
 		return await autoGempa();
 	}
 
 	/**
 	 * Mengambil list data gempa yang dirasakan.
-	 *
-	 * @returns {Promise<GempaDirasakan[]>} Array object list gempa yang dirasakan.
+	 * @returns Array berisi data gempa yang dirasakan.
 	 */
 	async gempaDirasakan(): Promise<GempaDirasakan[]> {
 		return await gempaDirasakan();
@@ -22,20 +20,18 @@ export default class BMKG {
 
 	/**
 	 * Mengambil list data gempa terkini.
-	 *
-	 * @returns {Promise<GempaTerkini[]>} Array object list gempa terkini.
+	 * @returns Array berisi data gempa terkini.
 	 */
 	async gempaTerkini(): Promise<GempaTerkini[]> {
 		return await gempaTerkini();
 	}
 
 	/**
-	 * Mengambil data prakiraan cuaca dalam waktu 3 harian.
-	 *
-	 * @param {string} [daerah = 'indonesia'] - Provinsi dan kota-kota yang ada di Indonesia. Default `indonesia`.
-	 * @returns {Promise<Cuaca>} Object prakiraan cuaca untuk `daerah`.
+	 * Mengambil data prakiraan cuaca dalam waktu 3 hari ke depan.
+	 * @param kelurahan - Nama kelurahan/desa. Default `Lebak Bulus`.
+	 * @returns Object berisi data prakiraan cuaca.
 	 */
-	async prakiraanCuaca(daerah?: string): Promise<Cuaca> {
-		return await prakiraanCuaca(daerah);
+	async prakiraanCuaca(kelurahan: string = 'Lebak Bulus'): Promise<DataCuaca | null> {
+		return await prakiraanCuaca(kelurahan);
 	}
 }

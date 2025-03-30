@@ -1,15 +1,14 @@
 import axios from 'axios';
-import type { AutoGempa, AutoGempaAPI } from '../../utils/interfaces.js';
-import { baseUrl, endpoints } from '../../utils/variables.js';
+import { BASE_URL, ENDPOINTS } from '../../config/constants.js';
+import type { AutoGempa, AutoGempaAPI } from '../../types/index.js';
 
 /**
  * Mengambil data gempa yang baru-baru ini terjadi.
- *
  * @returns Object berisi data gempa yang baru-baru ini terjadi.
  */
-export async function autoGempa(): Promise<AutoGempa | null> {
+export const autoGempa = async (): Promise<AutoGempa | null> => {
 	try {
-		const res = await axios.get<AutoGempaAPI>(baseUrl.gempa + endpoints.gempa.autoGempa);
+		const res = await axios.get<AutoGempaAPI>(ENDPOINTS.GEMPA.AUTO_GEMPA);
 		const gempa = res.data.Infogempa?.gempa;
 
 		if (!gempa) return null;
@@ -26,7 +25,7 @@ export async function autoGempa(): Promise<AutoGempa | null> {
 			wilayah: gempa.Wilayah,
 			potensi: gempa.Potensi,
 			dirasakan: gempa.Dirasakan,
-			shakemap: baseUrl.gempa + '/' + gempa.Shakemap,
+			shakemap: BASE_URL.GEMPA + '/' + gempa.Shakemap,
 		};
 	} catch (err) {
 		console.error('Error fetching data gempa:', err);

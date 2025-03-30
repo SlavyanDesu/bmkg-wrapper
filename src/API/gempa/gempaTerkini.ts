@@ -1,15 +1,14 @@
 import axios from 'axios';
-import type { GempaTerkini, GempaTerkiniAPI } from '../../utils/interfaces.js';
-import { baseUrl, endpoints } from '../../utils/variables.js';
+import { ENDPOINTS } from '../../config/constants.js';
+import type { GempaTerkini, GempaTerkiniAPI } from '../../types/index.js';
 
 /**
  * Mengambil list data gempa terkini.
- *
  * @returns Array berisi data gempa terkini.
  */
-export async function gempaTerkini(): Promise<GempaTerkini[]> {
+export const gempaTerkini = async (): Promise<GempaTerkini[]> => {
 	try {
-		const res = await axios.get<GempaTerkiniAPI>(baseUrl.gempa + endpoints.gempa.gempaTerkini);
+		const res = await axios.get<GempaTerkiniAPI>(ENDPOINTS.GEMPA.GEMPA_TERKINI);
 		const gempa = res.data.Infogempa?.gempa ?? [];
 
 		return gempa.map(

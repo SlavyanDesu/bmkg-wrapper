@@ -1,7 +1,7 @@
 import axios from 'axios';
 import csv from 'csv-parser';
 import { ENDPOINTS } from '../config/constants.js';
-import type { CuacaAPI, KodeWilayah } from '../types/index.js';
+import type { CuacaAPI, DataCuaca, KodeWilayah } from '../types/index.js';
 
 export const parseCsv = async (url: string): Promise<KodeWilayah[]> => {
 	const response = await axios.get(url, { responseType: 'stream' });
@@ -25,14 +25,19 @@ export const parseCsv = async (url: string): Promise<KodeWilayah[]> => {
 	}
 };
 
-export const searchByValue = (data: KodeWilayah[], value: string) => {
+export const searchKodeWilayah = (data: KodeWilayah[], value: string): string | null => {
 	const index = data.findIndex(
 		(item) => item.wilayah.toLowerCase() === value.toLowerCase()
 	);
-	return data[index].kode;
+
+	if (index === -1) {
+		return null;
+	} else {
+		return data[index].kode;
+	}
 };
 
-export const parseWeatherData = async (wilayah: string) => {
+export const parseWeatherData = async (wilayah: string): Promise<DataCuaca> => {
 	const res = await axios.get<CuacaAPI>(ENDPOINTS.CUACA + wilayah);
 	return res.data.data[0];
 };
